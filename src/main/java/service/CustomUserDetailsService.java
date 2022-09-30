@@ -1,24 +1,22 @@
 package service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import repo.UserRepo;
 
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
+import java.util.Optional;
 
-    @Autowired
-    private UserRepo userRepo;
+public interface CustomUserDetailsService extends UserDetailsService {
+
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return user;
-    }
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+
+    void save(User user);
+
+    Optional <User> findById(Long id);
+
+    void delate(Long id);
+
 }

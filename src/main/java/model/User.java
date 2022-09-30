@@ -14,7 +14,7 @@ import java.util.Collections;
 @Entity
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     private String username;
     private String password;
