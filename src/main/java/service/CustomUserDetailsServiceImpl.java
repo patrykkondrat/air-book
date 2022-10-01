@@ -2,15 +2,14 @@ package service;
 
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import repo.UserRepo;
 
-import java.util.Optional;
-
 @Service
+@ComponentScan
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
     @Autowired
@@ -26,18 +25,12 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     @Override
-    public void save(User user) {
-        userRepo.save(user);
-    }
+    public void save(org.springframework.security.core.userdetails.User user) {
 
-    @Override
-    public Optional<User> findById(Long id) {
-        return userRepo.findById(id);
     }
 
     @Override
     public void delate(Long id) {
-        userRepo.delete(id);
-    }
 
+    }
 }
