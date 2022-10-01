@@ -4,13 +4,11 @@ public class Seat {
     private Long id;
     private String place;
     private String name;
-    private String cost;
 
     public Seat(Long id, String place, String name, String cost) {
         this.id = id;
         this.place = place;
         this.name = name;
-        this.cost = cost;
     }
 
     public Seat() {
@@ -38,13 +36,5 @@ public class Seat {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCost() {
-        return cost;
-    }
-
-    public void setCost(String cost) {
-        this.cost = cost;
     }
 }
