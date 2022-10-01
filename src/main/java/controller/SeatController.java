@@ -1,4 +1,4 @@
-package api;
+package controller;
 
 import model.Seat;
 import org.springframework.stereotype.Controller;
@@ -22,17 +22,17 @@ public class SeatController {
         return null;
     }
 
-    @PostMapping(value = "/{flightId}/{place}/{name}")
+    @PostMapping(value = "add/{flightId}/{place}/{name}")
     public int addSeat(String flightId, String place, String name) {
         return 1;
     }
 
-    @PostMapping(value = "/{flightId}/{place}")
+    @PostMapping(value = "del/{flightId}/{place}")
     public int delSeat(String flightId, String place) {
         return 1;
     }
 
-    @PostMapping(value = "/{flightId}/{place}/{name}")
+    @PostMapping(value = "update/{flightId}/{place}/{name}")
     public int updateFlight(String flightId, String place, String name) {
         return 1;
     }

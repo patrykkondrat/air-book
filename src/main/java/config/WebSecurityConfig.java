@@ -1,4 +1,4 @@
-package ForLater.config;
+package config;
 
 import model.User;
 import org.springframework.context.annotation.Bean;
@@ -27,15 +27,21 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.antMatchers("/").permitAll();
-                    auth.antMatchers("/getall").hasRole("ADMIN")
+                    auth.antMatchers("api/v1/").hasRole("ADMIN")
                             .anyRequest().authenticated();
-                    auth.antMatchers("/book/**").hasAnyRole("USER", "ADMIN")
+                    auth.antMatchers("api/v1/seat/**").hasRole("ADMIN")
+                            .anyRequest().authenticated();
+                    auth.antMatchers("api/v1/seat/add/**").hasAnyRole("USER")
+                            .anyRequest().authenticated();
+                    auth.antMatchers("api/v1/seat/del/**").hasAnyRole("USER")
+                            .anyRequest().authenticated();
+                    auth.antMatchers("api/v1/seat/update/**").hasAnyRole("USER")
                             .anyRequest().authenticated();
                 })
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
-                )
+//                .formLogin((form) -> form
+//                        .loginPage("/login")
+//                        .permitAll()
+//                )
                 .httpBasic(Customizer.withDefaults())
                 .logout((logout) -> logout.permitAll())
                 .build();

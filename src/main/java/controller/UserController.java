@@ -1,4 +1,4 @@
-package api;
+package controller;
 
 import model.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1")
 public class UserController {
 
     @GetMapping
