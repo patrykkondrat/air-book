@@ -10,7 +10,4 @@ public interface CustomUserDetailsService extends UserDetailsService {
     @Override
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
-    void save(User user);
-
-    void delate(Long id);
 }
