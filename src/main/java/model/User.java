@@ -4,15 +4,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-public class User implements UserDetails {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
@@ -26,51 +25,26 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User() {
-
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(roles));
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
+    public User() {}
 
     public Long getID() {
         return ID;
     }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -83,5 +57,15 @@ public class User implements UserDetails {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "SecurityUser{" +
+                "id=" + ID +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
     }
 }
