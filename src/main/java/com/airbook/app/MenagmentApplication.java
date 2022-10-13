@@ -21,8 +21,10 @@ public class MenagmentApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(UserRepo users, PasswordEncoder encoder) {
 		return args -> {
+			//problem solved but idk why we have to use + "ROLE_" prefix (need to ask)
 			users.save(new User("user", encoder.encode("password"), "ROLE_USER"));
-			users.save(new User("admin", encoder.encode("password"), "ROLE_USER,ROLE_ADMIN"));
+			users.save(new User("stuff", encoder.encode("password"), "ROLE_USER,ROLE_STUFF"));
+			users.save(new User("admin", encoder.encode("password"), "ROLE_USER,ROLE_STUFF,ROLE_ADMIN"));
 		};
 	}
 }

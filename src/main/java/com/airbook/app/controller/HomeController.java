@@ -9,13 +9,18 @@ public class HomeController {
 
     @GetMapping
     public String hi() {
-        return "<h2>Hi, everyone!!!</h2>";
+        return "<h4>Hi, everyone!!!</h4>";
     }
-
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/user")
     public String userHi() {
-        return "<h1>Hi, user!</h1>";
+        return "<h3>Hi, user!</h3>";
+    }
+
+    @PreAuthorize("hasRole('STUFF')")
+    @GetMapping("/stuff")
+    public String stuffHi() {
+        return "<h2>Hi, stuff!</h2>";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -23,6 +28,5 @@ public class HomeController {
     public String adminHi() {
         return "<h1>Hi, admin!</h1>";
     }
-
 
 }

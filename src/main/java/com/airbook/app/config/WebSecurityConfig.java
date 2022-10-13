@@ -2,6 +2,8 @@ package com.airbook.app.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,6 +31,7 @@ public class WebSecurityConfig {
                 .authorizeRequests(auth -> auth
                         .mvcMatchers("/user").permitAll()
                         .mvcMatchers("/admin").permitAll()
+                        .mvcMatchers("/stuff").permitAll()
                         .mvcMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -37,6 +40,15 @@ public class WebSecurityConfig {
                 .httpBasic(withDefaults())
 
                 .build();
+    }
+
+    //to test
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        String hierarchy = "ROLE_ADMIN > ROLE_STAFF \n ROLE_STAFF > ROLE_USER";
+        roleHierarchy.setHierarchy(hierarchy);
+        return roleHierarchy;
     }
 
     @Bean

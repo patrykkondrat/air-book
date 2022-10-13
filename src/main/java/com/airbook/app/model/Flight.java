@@ -15,6 +15,7 @@ public class Flight {
     @Column(name = "max_seat")
     private Integer maxSeats;
     @Column(name = "captain_name")
+//    @OneToOne(mappedBy = "captain_name")
     private String captainName;
     @Column(name = "airport_start")
     private AirPort airportStart;
