@@ -1,84 +1,69 @@
-//package com.airbook.app.model;
-//
-//import javax.persistence.*;
-//import java.time.LocalDate;
-//import java.util.UUID;
-//
-//@Entity
-//@Table(name = "employees")
-//public class Employee {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "emp-id")
-//    private Long Id;
-//    @Column(name = "uniq-id")
-//    private UUID uniqId;
-////    @OneToOne
-////    @PrimaryKeyJoinColumn(name = "emp-id")
-//    @Column(name = "captain-name")
-//    private String name;
-//    @Column(name = "position")
-//    private String position;
-//    @Column(name = "birthday")
-//    private LocalDate birthday;
-//    @Column(name = "date-of-employment")
-//    private LocalDate dateOfEmployment;
-//    @Column(name = "salary")
-//    private Integer salary;
-//
-//    public Employee(String name, String position, LocalDate birthday, LocalDate dateOfEmployment, Integer salary) {
-//        this.name = name;
-//        this.uniqId = UUID.randomUUID();
-//        this.position = position;
-//        this.birthday = birthday;
-//        this.dateOfEmployment = dateOfEmployment;
-//        this.salary = salary;
-//    }
-//
-//    public Employee() {
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getPosition() {
-//        return position;
-//    }
-//
-//    public void setPosition(String position) {
-//        this.position = position;
-//    }
-//
-//    public LocalDate getBirthday() {
-//        return birthday;
-//    }
-//
-//    public void setBirthday(LocalDate birthday) {
-//        this.birthday = birthday;
-//    }
-//
-//    public LocalDate getDateOfEmployment() {
-//        return dateOfEmployment;
-//    }
-//
-//    public void setDateOfEmployment(LocalDate dateOfEmployment) {
-//        this.dateOfEmployment = dateOfEmployment;
-//    }
-//
-//    public Integer getSalary() {
-//        return salary;
-//    }
-//
-//    public void setSalary(Integer salary) {
-//        this.salary = salary;
-//    }
-//
-//    public UUID getUniqId() {
-//        return uniqId;
-//    }
-//}
+package com.airbook.app.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private LocalDate birthday;
+    private LocalDate dateOfEmployment;
+    private Double salary;
+
+    public Employee(Long id, String name, LocalDate birthday, LocalDate dateOfEmployment, Double salary) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+        this.dateOfEmployment = dateOfEmployment;
+        this.salary = salary;
+    }
+
+    public Employee() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public LocalDate getDateOfEmployment() {
+        return dateOfEmployment;
+    }
+
+    public void setDateOfEmployment(LocalDate dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+}
