@@ -9,19 +9,19 @@ public class HomeController {
 
     @GetMapping
     public String hi() {
-        return "Hi!!!";
+        return "<h2>Hi, everyone!!!</h2>";
     }
 
     @PreAuthorize("hasRole('USER')")
-    @GetMapping(value = "/hello")
-    public String getHome() {
-        return "<h1>HOME!</h1>";
+    @GetMapping("/user")
+    public String userHi() {
+        return "<h1>Hi, user!</h1>";
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @GetMapping(value = "/test")
-    public String getStart() {
-        return "<h2>Test!!!</h2>";
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin")
+    public String adminHi() {
+        return "<h1>Hi, admin!</h1>";
     }
 
 
