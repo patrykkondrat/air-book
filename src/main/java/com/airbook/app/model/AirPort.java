@@ -8,12 +8,10 @@ import java.util.ArrayList;
 public class AirPort {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "airport_id")
-    private Long airportId;
-    @Column(name = "airport_name")
+    @Column(name = "airport-id")
+    private Integer airportId;
+    @Column(name = "airport-name")
     private String airportName;
-    @Column(name = "country")
-    private String country;
     @Column(name = "coords")
     private ArrayList<Double> coordinatesXY;
 
@@ -25,21 +23,20 @@ public class AirPort {
         this.coordinatesXY = coordinatesXY;
     }
 
-    public AirPort(Long airportId, String airportName, String country, ArrayList<Double> coordinatesXY) {
+    public AirPort(Integer airportId, String airportName, ArrayList<Double> coordinatesXY) {
         this.airportId = airportId;
         this.airportName = airportName;
-        this.country = country;
         this.coordinatesXY = coordinatesXY;
     }
 
     public AirPort() {
     }
 
-    public Long getAirportId() {
+    public Integer getAirportId() {
         return airportId;
     }
 
-    public void setAirportId(Long airportId) {
+    public void setAirportId(Integer airportId) {
         this.airportId = airportId;
     }
 
@@ -49,13 +46,5 @@ public class AirPort {
 
     public void setAirportName(String airportName) {
         this.airportName = airportName;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }
