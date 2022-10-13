@@ -9,24 +9,22 @@ import java.util.UUID;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "emp-id")
+    @Column(name = "emp_id")
     private Long Id;
-    @Column(name = "uniq-id")
+    @Column(name = "uniq_id")
     private UUID uniqId;
-//    @OneToOne
-//    @PrimaryKeyJoinColumn(name = "emp-id")
-    @Column(name = "captain-name")
+    @Column(name = "captain_name")
     private String name;
     @Column(name = "position")
     private String position;
     @Column(name = "birthday")
-    private LocalDate birthday;
-    @Column(name = "date-of-employment")
-    private LocalDate dateOfEmployment;
+    private String birthday;
+    @Column(name = "date_of_employment")
+    private String dateOfEmployment;
     @Column(name = "salary")
     private Integer salary;
 
-    public Employee(String name, String position, LocalDate birthday, LocalDate dateOfEmployment, Integer salary) {
+    public Employee(String name, String position, String birthday, String dateOfEmployment, Integer salary) {
         this.name = name;
         this.uniqId = UUID.randomUUID();
         this.position = position;
@@ -54,19 +52,19 @@ public class Employee {
         this.position = position;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public LocalDate getDateOfEmployment() {
+    public String getDateOfEmployment() {
         return dateOfEmployment;
     }
 
-    public void setDateOfEmployment(LocalDate dateOfEmployment) {
+    public void setDateOfEmployment(String dateOfEmployment) {
         this.dateOfEmployment = dateOfEmployment;
     }
 

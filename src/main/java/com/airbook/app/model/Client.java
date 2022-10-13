@@ -4,16 +4,20 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Client")
+@Table(name = "client")
 public class Client {
-    @Id
-    private UUID clientId;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "client_id")
+    private Long clientId;
+    @Column(name = "name")
     private String name;
+    @Column(name = "seat")
     private String seat;
+    @Column(name = "cost")
     private Integer cost;
 
-    public Client(UUID clientId, String name, String seat, Integer cost) {
-        this.clientId = UUID.randomUUID();
+    public Client(Long clientId, String name, String seat, Integer cost) {
+        this.clientId = clientId;
         this.name = name;
         this.seat = seat;
         this.cost = cost;
