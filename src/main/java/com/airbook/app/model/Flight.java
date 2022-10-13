@@ -10,22 +10,21 @@ public class Flight {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long flightId;
-    @Column(name = "id-uuid")
+    @Column(name = "id_uuid")
     private UUID idUniq;
-    @Column(name = "max-seat")
+    @Column(name = "max_seat")
     private Integer maxSeats;
-//    @OneToOne(mappedBy = "captainName")
-    @Column(name = "captain-name")
+    @Column(name = "captain_name")
     private String captainName;
     @Column(name = "airport_start")
     private AirPort airportStart;
-    @Column(name = "airport-end")
+    @Column(name = "airport_end")
     private AirPort airportEnd;
-    @Column(name = "departure-time")
+    @Column(name = "departure_time")
     private LocalDate departureTime;
-    @Column(name = "arrival-time")
+    @Column(name = "arrival_time")
     private LocalDate arrivalTime;
-    @Column(name = "seat-placement")
+    @Column(name = "seat_placement")
     private HashMap<String, Client> seatPlacement;
 
     public Flight(Long flightId, Integer maxSeats, String captainName, AirPort airportStart, AirPort airportEnd, LocalDate departureTime, LocalDate arrivalTime, HashMap<String, Client> seatPlacement) {
