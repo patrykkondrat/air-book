@@ -25,11 +25,12 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
-                .csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**"))
+                .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
-                        .antMatchers("/hello").permitAll()
-                        .antMatchers("").permitAll()
-                        .mvcMatchers("/test").permitAll()
+                        .mvcMatchers("/admin").permitAll()
+                        .mvcMatchers("/stuff").permitAll()
+                        .mvcMatchers("/user").permitAll()
+                        .mvcMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(customUserDetailsServiceImpl)

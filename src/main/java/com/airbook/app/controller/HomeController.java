@@ -8,20 +8,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @GetMapping
-    public String hi() {
-        return "Hi!!!";
+    public String everyone() {
+        return "<h2>EVERYONE!</h2>";
     }
 
     @PreAuthorize("hasRole('USER')")
-    @GetMapping(value = "/hello")
-    public String getHome() {
-        return "<h1>HOME!</h1>";
+    @GetMapping(value = "/user")
+    public String user() {
+        return "<h1>USER!</h1>";
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    @GetMapping(value = "/test")
-    public String getStart() {
-        return "<h2>Test!!!</h2>";
+    @PreAuthorize("hasRole('STUFF')")
+    @GetMapping(value = "/stuff")
+    public String stuff() {
+        return "<h1>STUFF!</h1>";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping(value = "/admin")
+    public String admin() {
+        return "<h1>ADMIN!</h1>";
     }
 
 

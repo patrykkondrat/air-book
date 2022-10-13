@@ -53,11 +53,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "SecurityUser{" +
-                "id=" + ID +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", roles='" + roles + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("SecUser{");
+        sb.append("ID=").append(ID);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", roles='").append(roles).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
