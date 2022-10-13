@@ -5,10 +5,14 @@ import com.airbook.app.repo.UserRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
+@EntityScan(basePackages = {"com.airbook.app"})
+@EnableJpaRepositories(basePackages = {"com.airbook.app"})
 public class MenagmentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MenagmentApplication.class, args);
