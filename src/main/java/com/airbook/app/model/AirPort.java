@@ -1,33 +1,29 @@
 package com.airbook.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class AirPort {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long airportId;
+    @Column(name = "airport_id")
+    private String airportId;
     private String airportName;
     private Integer airportCode;
-    private String country;
 
-    public AirPort(Long airportId, String airportName, Integer airportCode, String country) {
+    public AirPort(String airportId, String airportName, Integer airportCode) {
         this.airportId = airportId;
         this.airportName = airportName;
         this.airportCode = airportCode;
-        this.country = country;
     }
 
     public AirPort() {
     }
 
-    public Long getAirportId() {
+    public String getAirportId() {
         return airportId;
     }
 
-    public void setAirportId(Long airportId) {
+    public void setAirportId(String airportId) {
         this.airportId = airportId;
     }
 
@@ -45,13 +41,5 @@ public class AirPort {
 
     public void setAirportCode(Integer airportCode) {
         this.airportCode = airportCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }
