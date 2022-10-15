@@ -1,26 +1,47 @@
 package com.airbook.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
+import jdk.jfr.DataAmount;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
+
+//
+//          ADD RELATIONS AND UKNOWN TYPES       !!!!!!!!!!!!!!!!!!!!!!
+//
+
+@Entity
 public class Flight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long flightId;
+    @Column(name = "max_seats")
     private Integer maxSeats;
-    private Employee captainName;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Employee.class)
+    @JoinColumn(name = "fk_emp_id")
+    private Employee captain;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_airport_id")
     private AirPort airportStart;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_airport_id", insertable = false, updatable = false)
     private AirPort airportEnd;
-    private LocalDate departureTime;
-    private LocalDate arrivalTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date departureTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date arrivalTime;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_seat_id")
     private SeatPlacement seatPlacement;
 
-    public Flight(Long flightId, Integer maxSeats, Employee captainName, AirPort airportStart, AirPort airportEnd, LocalDate departureTime, LocalDate arrivalTime, SeatPlacement seatPlacement) {
+    public Flight(Long flightId, Integer maxSeats, Employee captainName, AirPort airportStart, AirPort airportEnd, Date departureTime, Date arrivalTime, SeatPlacement seatPlacement) {
         this.flightId = flightId;
         this.maxSeats = maxSeats;
-        this.captainName = captainName;
+        this.captain = captainName;
         this.airportStart = airportStart;
         this.airportEnd = airportEnd;
         this.departureTime = departureTime;
@@ -47,12 +68,12 @@ public class Flight {
         this.maxSeats = maxSeats;
     }
 
-    public Employee getCaptainName() {
-        return captainName;
+    public Employee getCaptain() {
+        return captain;
     }
 
-    public void setCaptainName(Employee captainName) {
-        this.captainName = captainName;
+    public void setCaptain(Employee captain) {
+        this.captain = captain;
     }
 
     public AirPort getAirportStart() {
@@ -71,19 +92,19 @@ public class Flight {
         this.airportEnd = airportEnd;
     }
 
-    public LocalDate getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalDate departureTime) {
+    public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
     }
 
-    public LocalDate getArrivalTime() {
+    public Date getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(LocalDate arrivalTime) {
+    public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

@@ -1,13 +1,11 @@
 package com.airbook.app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class AirPort {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "airport_id")
     private Long airportId;
     private String airportName;
     private Integer airportCode;
