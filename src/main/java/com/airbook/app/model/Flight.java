@@ -30,6 +30,9 @@ public class Flight {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
     @JoinColumn(name = "fk_airport_id", insertable = false, updatable = false)
     private AirPort airportEnd;
+
+    //status should be binding, changed, canceled
+    private String status;
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureTime;
     @Temporal(TemporalType.TIMESTAMP)
@@ -114,5 +117,13 @@ public class Flight {
 
     public void setSeatPlacement(SeatPlacement seatPlacement) {
         this.seatPlacement = seatPlacement;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

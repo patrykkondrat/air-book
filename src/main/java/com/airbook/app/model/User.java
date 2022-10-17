@@ -1,14 +1,24 @@
 package com.airbook.app.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
+//@PasswordMatcher
 public class User {
     @Id @GeneratedValue
     private Long ID;
+    @NotNull
+    @NotEmpty
     private String username;
+    @NotNull
+    @NotEmpty
     private String password;
+    @NotNull
+    @NotEmpty
     private String roles;
 
     public User(String username, String password, String roles) {
