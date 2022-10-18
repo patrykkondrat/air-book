@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org", lang="en">
-<!-- THEAMLEAF PROBABLY WORKS BUT INTELLIJ DON'T SUPPORT NAMESPACE...-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>AirBook</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 </head>
 <body>
-<h1>You're Welcome!</h1>
-<p>
-    THEAMLEAF PROBABLY WORKS BUT INTELLIJ DON'T SUPPORT NAMESPACE...
-</p>
+<h1>Welcome</h1>
 <div>
-    <a>dsad</a>
+    <a th:href="@{/registration_form}">Go to User Registration Form</a>
 </div>
 </body>
 </html>

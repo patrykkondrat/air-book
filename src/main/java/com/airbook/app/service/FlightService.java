@@ -37,8 +37,7 @@ public class FlightService {
     }
 
     public void delFlightById(Long Id) {
-        Optional<Flight> flightToDel = findFlightById(Id);
-        flightRepo.deleteById(flightToDel.get().getFlightId());
+        flightRepo.deleteById(Id);
     }
 
     public void updateFlight(Long Id, Flight flightToUpdate) {
@@ -48,9 +47,8 @@ public class FlightService {
         if (flightRepo.findById(Id).isPresent()) {
             Flight existingFlight = flightRepo.findById(Id).get();
 
-//            existingFlight.set;
+            existingFlight.setStatus("changed");
+            flightRepo.saveAndFlush(flightToUpdate);
         }
     }
-
-
 }
