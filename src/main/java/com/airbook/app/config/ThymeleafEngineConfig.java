@@ -7,7 +7,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
-public class ThymeleafEnginConfig implements WebMvcConfigurer {
+public class ThymeleafEngineConfig implements WebMvcConfigurer {
 
     @Bean
     public ClassLoaderTemplateResolver yourTemplateResolver() {

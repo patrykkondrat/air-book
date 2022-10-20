@@ -12,21 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
-@RequestMapping("/user")
 public class RegistryController {
-
-    private UserRepo userRepo;
-
-    @GetMapping("/index")
-    public String init() {
-        return "index";
-    }
-
     @GetMapping("/registration")
-    public String createUser(WebRequest request, Model model) {
+    public String createUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "registration_form";
+        return "registration";
     }
 
     @PostMapping("/save")

@@ -3,7 +3,7 @@ body {
     font-family: "Asap", sans-serif;
 }
 
-.sel {
+.login {
     overflow: hidden;
     background-color: white;
     padding: 40px 30px 30px 30px;
@@ -22,7 +22,7 @@ body {
     transition: transform 300ms, box-shadow 300ms;
     box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
 }
-.sel::before, .sel::after {
+.login::before, .login::after {
     content: "";
     position: absolute;
     width: 600px;
@@ -33,7 +33,7 @@ body {
     border-bottom-right-radius: 40%;
     z-index: -1;
 }
-.sel::before {
+.login::before {
     left: 40%;
     bottom: -130%;
     background-color: rgba(69, 105, 144, 0.15);
@@ -41,7 +41,7 @@ body {
     -moz-animation: wawes 6s infinite linear;
     animation: wawes 6s infinite linear;
 }
-.sel::after {
+.login::after {
     left: 35%;
     bottom: -125%;
     background-color: rgba(2, 128, 144, 0.2);
@@ -49,18 +49,18 @@ body {
     -moz-animation: wawes 7s infinite;
     animation: wawes 7s infinite;
 }
-.sel > a {
+.login > input {
     font-family: "Asap", sans-serif;
-    /*display: block;*/
+    display: block;
     border-radius: 5px;
     font-size: 16px;
-    /*background: white;*/
-    /*width: 100%;*/
+    background: white;
+    width: 100%;
     border: 0;
     padding: 10px 10px;
     margin: 15px -10px;
 }
-.sel > button {
+.login > button {
     font-family: "Asap", sans-serif;
     cursor: pointer;
     color: #fff;
@@ -77,7 +77,7 @@ body {
     -moz-transition: background-color 300ms;
     transition: background-color 300ms;
 }
-.sel > button:hover {
+.login > button:hover {
     background-color: #f24353;
 }
 
@@ -115,7 +115,6 @@ body {
 }
 a {
     text-decoration: none;
-    text-align: center;
     color: rgba(255, 255, 255, 0.6);
     position: absolute;
     right: 10px;

@@ -37,7 +37,7 @@ public class Flight {
     private Date departureTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = SeatPlacement.class)
     @JoinColumn(name = "fk_seat_id")
     private SeatPlacement seatPlacement;
 
