@@ -3,7 +3,9 @@ package com.airbook.app.controller;
 
 import com.airbook.app.model.Employee;
 import com.airbook.app.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,9 +16,11 @@ import java.util.Optional;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+    @Autowired
     private EmployeeService employeeService;
+
     // select employee
-    @GetMapping
+    @GetMapping // WORKS
     public List<Employee> getFlights() {
         if (employeeService.findAllEmployees().isEmpty()) {
             return null;
@@ -25,9 +29,9 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/{id}")
-    public Optional<Employee> getFlightById(Long Id) {
-        return employeeService.findEmployeeById(String.valueOf(Id));
+    @GetMapping("/{Id}") // WORKS
+    public Optional<Employee> getFlightById(@PathVariable Long Id) {
+        return employeeService.findEmployeeById(Id);
     }
 
     // add employee

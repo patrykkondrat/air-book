@@ -9,35 +9,26 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-//
-//          ADD RELATIONS AND UKNOWN TYPES       !!!!!!!!!!!!!!!!!!!!!!
-//
-
 @Entity
 public class Flight {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long flightId;
     @Column(name = "max_seats")
     private Integer maxSeats;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Employee.class)
+    @OneToOne(cascade = CascadeType.DETACH, targetEntity = Employee.class)
     @JoinColumn(name = "fk_emp_id")
     private Employee captain;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
-    @JoinColumn(name = "fk_airport_id")
+    @OneToOne(cascade = CascadeType.DETACH, targetEntity = AirPort.class)
     private AirPort airportStart;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
-    @JoinColumn(name = "fk_airport_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.DETACH, targetEntity = AirPort.class)
     private AirPort airportEnd;
-
     //status should be binding, changed, canceled
     private String status;
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = SeatPlacement.class)
+    @OneToOne(cascade = CascadeType.DETACH, targetEntity = SeatPlacement.class)
     @JoinColumn(name = "fk_seat_id")
     private SeatPlacement seatPlacement;
 

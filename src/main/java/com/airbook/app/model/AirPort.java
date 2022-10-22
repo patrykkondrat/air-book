@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class AirPort {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "airport_id")
     private String airportId;
     private String airportName;

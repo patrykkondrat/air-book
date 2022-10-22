@@ -14,8 +14,8 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
-    public Optional<Employee> findEmployeeById(String Id) {
-        return employeeRepo.findById(Long.valueOf(Id));
+    public Optional<Employee> findEmployeeById(Long Id) {
+        return employeeRepo.findById(Id);
     }
 
     public List<Employee> findAllEmployees() {

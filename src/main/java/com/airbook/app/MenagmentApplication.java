@@ -14,12 +14,11 @@ public class MenagmentApplication {
 		SpringApplication.run(MenagmentApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner commandLineRunner(UserRepo users, PasswordEncoder encoder) {
-		return args -> {
-			users.save(new User("user", encoder.encode("password"), "ROLE_USER"));
-			users.save(new User("stuff", encoder.encode("password"), "ROLE_USER,ROLE_STUFF"));
-			users.save(new User("admin", encoder.encode("password"), "ROLE_USER,ROLE_STUFF,ROLE_ADMIN"));
-		};
-	}
+//	@Bean
+//	CommandLineRunner commandLineRunner(UserRepo users, PasswordEncoder encoder) {
+//		return args -> {
+//			users.save(new User("user", encoder.encode("password"), "ROLE_USER"));
+//			users.save(new User("stuff", encoder.encode("password"), "ROLE_USER,ROLE_STUFF"));
+//			users.save(new User("admin", encoder.encode("password"), "ROLE_USER,ROLE_STUFF,ROLE_ADMIN"));
+//		};
 }

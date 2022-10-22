@@ -1,19 +1,18 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security" lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Welcome</title>
 <!--    <link th:href="@{https://fonts.googleapis.com/css?family=Asap}" rel="stylesheet">-->
-    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css" href="../static/css/index.css"/>
 
 </head>
 <body>
-<a>Welcome</a>
-<div class="sel">
-
-    <a th:href="@{/login}"> Log In</a><br>
-    <a th:href="@{/registration}">Go to User Registration Form</a><br>
-    <a th:href="@{/employee_reg}">Go to Employee Registration Form</a><br>
-</div>
+    <h1>AirBook</h1>
+    <div class="sel">
+        <a th:href="@{/login}" href="login.html"> Log In</a><br>
+        <a th:href="@{/registration}" href="registration.html">Go to User Registration Form</a><br>
+        <a th:href="@{/employee_reg}" sec:authorize="hasRole('ADMIN')" href="employee_reg.html">Go to Employee Registration Form</a><br>
+    </div>
 </body>
 </html>
