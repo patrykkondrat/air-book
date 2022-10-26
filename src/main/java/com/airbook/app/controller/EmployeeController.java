@@ -2,12 +2,11 @@ package com.airbook.app.controller;
 
 
 import com.airbook.app.model.Employee;
+import com.airbook.app.repo.EmployeeRepo;
 import com.airbook.app.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +17,9 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
     // select employee
     @GetMapping // WORKS
@@ -35,9 +37,29 @@ public class EmployeeController {
     }
 
     // add employee
+    @PostMapping("/add") // WORKS
+    public void addEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
+    }
 
     // delate employee
+    @DeleteMapping("/del/{id}") // WORKS
+    public void delEmployee(@PathVariable Long id) {
+        employeeService.delEmployee(id);
+    }
 
     // update employee
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee, @PathVariable Long id) {
+        Optional<Employee> employeeOptional = employeeService.findEmployeeById(id);
 
+        if (employeeOptional.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        employee.setId(id);
+
+        employeeRepo.save(employee);
+
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -1,5 +1,6 @@
 package com.airbook.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jdk.jfr.DataAmount;
 
 import javax.persistence.*;
@@ -15,20 +16,22 @@ public class Flight {
     private Long flightId;
     @Column(name = "max_seats")
     private Integer maxSeats;
-    @OneToOne(cascade = CascadeType.DETACH, targetEntity = Employee.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Employee.class)
     @JoinColumn(name = "fk_emp_id")
     private Employee captain;
-    @OneToOne(cascade = CascadeType.DETACH, targetEntity = AirPort.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
     private AirPort airportStart;
-    @OneToOne(cascade = CascadeType.DETACH, targetEntity = AirPort.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
     private AirPort airportEnd;
     //status should be binding, changed, canceled
     private String status;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date departureTime;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date arrivalTime;
-    @OneToOne(cascade = CascadeType.DETACH, targetEntity = SeatPlacement.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = SeatPlacement.class)
     @JoinColumn(name = "fk_seat_id")
     private SeatPlacement seatPlacement;
 

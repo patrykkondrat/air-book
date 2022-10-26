@@ -3,6 +3,7 @@ package com.airbook.app.service;
 import com.airbook.app.model.Flight;
 import com.airbook.app.repo.FlightRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,15 +41,17 @@ public class FlightService {
         flightRepo.deleteById(Id);
     }
 
-    public void updateFlight(Long Id, Flight flightToUpdate) {
+    public ResponseEntity<Object> updateFlight(Long Id, Flight flightToUpdate) {
 
         // 2 options: set previous flight status as changed and set actualy flight as binding
 
-        if (flightRepo.findById(Id).isPresent()) {
-            Flight existingFlight = flightRepo.findById(Id).get();
+        Optional<Flight> flightOptional = flightRepo.findById(Id);
 
-            existingFlight.setStatus("changed");
-            flightRepo.saveAndFlush(flightToUpdate);
+        if (flightOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+
+        flightRepo.save(flightToUpdate);
+        return ResponseEntity.noContent().build();
     }
 }
