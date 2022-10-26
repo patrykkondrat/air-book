@@ -14,12 +14,12 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/user")
 public class RegistryController {
-
-    @Autowired
-    
-
-    @PostMapping("/add/user")
-    public void
+//
+//    @Autowired
+//
+//
+//    @PostMapping("/add/user")
+//    public void
 
 
 
