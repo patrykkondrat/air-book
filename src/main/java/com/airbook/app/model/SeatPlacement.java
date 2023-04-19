@@ -1,7 +1,6 @@
 package com.airbook.app.model;
 
-import javax.persistence.*;
-import java.util.HashMap;
+import jakarta.persistence.*;
 
 @Entity
 public class SeatPlacement {
@@ -9,15 +8,7 @@ public class SeatPlacement {
     @GeneratedValue
     @Column(name = "seat_id")
     private Long id;
-    private HashMap<String, Client> seatPlacement;
 
-
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("SeatPlacement{");
-        sb.append("seatPlacement=").append(seatPlacement);
-        sb.append('}');
-        return sb.toString();
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Client client;
 }

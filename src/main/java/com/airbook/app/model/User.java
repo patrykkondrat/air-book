@@ -1,24 +1,23 @@
 package com.airbook.app.model;
 
-import com.sun.istack.NotNull;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.NonNull;
 
 @Entity
 @Table(name = "users")
 //@PasswordMatcher
 public class User {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long ID;
-    @NotNull
-    @NotEmpty
+    @NonNull
     private String username;
-    @NotNull
-    @NotEmpty
+    @NonNull
     private String password;
-    @NotNull
-    @NotEmpty
+    @NonNull
     private String roles;
 
     public User(String username, String password, String roles) {
@@ -59,16 +58,5 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("SecUser{");
-        sb.append("ID=").append(ID);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", roles='").append(roles).append('\'');
-        sb.append('}');
-        return sb.toString();
     }
 }
