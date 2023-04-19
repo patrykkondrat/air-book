@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AirBook</title>
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<p>Bad credentials</p>
+<form class="employee" th:action="@{/login}" method="post">
+
+  <input type="text" placeholder="Username" autofocus="autofocus">
+  <input type="password" placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+</body>
+</html>
