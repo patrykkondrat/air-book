@@ -13,5 +13,7 @@
     <input type="password" placeholder="Password">
     <button type="submit">Login</button>
 </form>
+<p th:if="${param.error}" th:text="${param.error}"></p>
+<p>Nie masz konta? <a th:href="@{/registration}">Zarejestruj się.</a></p>
 </body>
 </html>

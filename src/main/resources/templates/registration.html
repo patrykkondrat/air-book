@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 <div class="col-md-8 mx-auto">
     <h2>User Registration</h2>
-    <form class="registr" th:action="@{/save}" th:object="${user}" method="post">
+    <form class="registr" th:action="@{/register}" th:object="${user}" method="post">
         <input type="text"  class="form-control" th:field="*{username}" placeholder="username">
         <input type="password" class="form-control" th:field="*{password}" placeholder="password">
         <button type="submit" class="btn btn-primary btn-block mt-3">Sign In</button>

@@ -77,7 +77,7 @@ body {
     -moz-transition: background-color 300ms;
     transition: background-color 300ms;
 }
-.login > button:hover {
+. > button:hover {
     background-color: #f24353;
 }
 
