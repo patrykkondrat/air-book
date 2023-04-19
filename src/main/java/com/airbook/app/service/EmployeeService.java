@@ -14,7 +14,7 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
-    public Optional<Employee> findEmployeeById(String Id) {
+    public Optional<Employee> findEmployeeById(Long Id) {
         return employeeRepo.findById(Long.valueOf(Id));
     }
 
@@ -30,11 +30,11 @@ public class EmployeeService {
         employeeRepo.deleteById(Id);
     }
 
-    public void updateEmployee(Long Id, Employee employee){
-            if (employeeRepo.findById(Id).isPresent()) {
-                Employee existingEmployee = employeeRepo.findById(Id).get();
-                employeeRepo.deleteById(Id);
-                employeeRepo.saveAndFlush(employee);
-            }
-        }
+    public void updateEmployee(Long Id, Employee employee) {
+        Employee employeeUpd = employeeRepo.findById(Id).orElseThrow(() -> new IllegalStateException("Employee with id " + Id + " does not exist"));
+        employeeUpd.setName(employee.getName());
+        employeeUpd.setBirthday(employee.getBirthday());
+        employeeUpd.setDateOfEmployment(employee.getDateOfEmployment());
+        employeeRepo.save(employeeUpd);
     }
+}
