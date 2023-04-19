@@ -1,19 +1,53 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Welcome</title>
 <!--    <link th:href="@{https://fonts.googleapis.com/css?family=Asap}" rel="stylesheet">-->
-    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css"/>
-
+<!--    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css"/>-->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a>Welcome</a>
-<div class="sel">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">AirBook</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Strona Główna <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/employee}">Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Flight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Booking</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Log in</a>
+            </li>
+            <li>
+                <a class="nav-link" th:href="@{/registration}">Sign in</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <a th:href="@{/login}"> Log In</a><br>
-    <a th:href="@{/registration}">Go to User Registration Form</a><br>
-    <a th:href="@{/employee_reg}">Go to Employee Registration Form</a><br>
-</div>
+
+
+<!--<div class="nav-bar-cell1-rev">-->
+<!--    <a th:href="@{/login}">Log In</a><br>-->
+<!--    <a th:href="@{/registration}">Go to User Registration Form</a><br>-->
+<!--    <a th:href="@{/employee_reg}">Go to Employee Registration Form</a><br>-->
+<!--</div>-->
 </body>
 </html>
