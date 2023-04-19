@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,20 +28,20 @@ public class WebSecurityConfig {
     @Order(1)
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
-                .authorizeRequests(auth -> auth
-                        .mvcMatchers("/admin/**").permitAll()
-                        .mvcMatchers("/stuff/**").permitAll()
-                        .mvcMatchers("/user/**").permitAll()
-                        .mvcMatchers("/css/**", "/").permitAll()
-                        .mvcMatchers("/css/**", "/registration").permitAll()
-                        .mvcMatchers("/css/**", "/login").permitAll()
-                        .anyRequest().fullyAuthenticated()
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/admin/**").permitAll()
+                        .requestMatchers("/stuff/**").permitAll()
+                        .requestMatchers("/user/**").permitAll()
+                        .requestMatchers("/css/**", "/").permitAll()
+                        .requestMatchers("/css/**", "/register").permitAll()
+                        .requestMatchers("/css/**", "/login").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .userDetailsService(customUserDetailsServiceImpl)
 
                 .formLogin()
-                    .loginPage("/login.html")
+                    .loginPage("/login")
                     .usernameParameter("username")
                 .defaultSuccessUrl("/index", true)
                 .failureUrl("/login-error")
