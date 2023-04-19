@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" th:href="@{/css/employee.css}" type="text/css"/>
+    <title>Employees</title>
+</head>
+<body>
+<form class="employee form-employee" th:object="${employee}" th:action="@{/employee/update/__${employee.id}__}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Name" autofocus="autofocus">
+    <input type="date" th:field="*{birthday}" th:value="${employee.birthday}" placeholder="Birthday">
+    <input type="date" th:field="*{dateOfEmployment}" th:value="${employee.dateOfEmployment}" placeholder="Date Of Employment">
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

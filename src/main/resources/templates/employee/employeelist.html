@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" th:href="@{/css/employee.css}" type="text/css"/>
+
+    <title>Employees</title>
+</head>
+<body>
+<div class="employee table-employee">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>Full Name</td>
+        <td>Birthday</td>
+        <td>Day of Employment</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.getId()}"></td>
+        <td th:text="${employee.getName()}"></td>
+        <td th:text="${employee.getBirthday()}"></td>
+        <td th:text="${employee.getDateOfEmployment()}"></td>
+        <td><a class="near-row" th:href="${'/employee/update?id=' + employee.getId()}">Edit</a></td>
+        <td><a class="near-row" th:href="${'/employee/delete/' + employee.getId()}">Delete</a></td>
+    </tr>
+</table>
+    <a class="add" th:href="@{/employee/add}">Add</a>
+</div>
+
+</body>
+</html>
