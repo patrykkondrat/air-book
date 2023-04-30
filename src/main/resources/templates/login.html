@@ -6,14 +6,14 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-
-<form class="login" th:action="@{/login}" method="post">
-
-    <input type="text" placeholder="Username" autofocus="autofocus">
-    <input type="password" placeholder="Password">
-    <button type="submit">Login</button>
-</form>
-<p th:if="${param.error}" th:text="${param.error}"></p>
-<p>Nie masz konta? <a th:href="@{/registration}">Zarejestruj się.</a></p>
+<div class="form-group">
+    <form class="login" th:action="@{/login}" method="post">
+        <input type="text" placeholder="Username" autofocus="autofocus">
+        <input type="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <p th:if="${param.error}" th:text="${param.error}"></p>
+    <p>Nie masz konta? <a th:href="@{/registration}">Zarejestruj się.</a></p>
+</div>
 </body>
 </html>
