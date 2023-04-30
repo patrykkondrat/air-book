@@ -5,25 +5,24 @@
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
     <link rel="stylesheet" href="@{https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
     <link rel="stylesheet" th:href="@{/css/employee.css}" type="text/css"/>
-
     <title>Employees</title>
 </head>
 <body>
+<div th:include="index.html"></div>
 <form class="employee form-employee" th:object="${employee}" th:action="@{/employee/add}" method="post">
-    <label>Name</label>
-    <label>
-        <input type="text" th:field="*{name}" placeholder="Name" autofocus="autofocus">
-    </label>
-    <label>Birthday</label>
-    <label>
-        <input type="date" th:field="*{birthday}" th:value="${employee.birthday}" placeholder="Birthday">
-    </label>
-    <label>Date of Employment</label>
-    <label>
-        <input type="date" th:field="*{dateOfEmployment}" th:value="${employee.dateOfEmployment}" placeholder="Date Of Employment">
-    </label>
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" th:field="*{name}" placeholder="Name" autofocus="autofocus">
+    </div>
+    <div class="form-group">
+        <label>Birthday</label>
+        <input class="form-control" type="date" th:field="*{birthday}" th:value="${employee.birthday}" placeholder="Birthday">
+    </div>
+    <div class="form-group">
+        <label>Date of Employment</label>
+        <input class="form-control" type="date" th:field="*{dateOfEmployment}" th:value="${employee.dateOfEmployment}" placeholder="Date Of Employment">
+    </div>
     <button type="submit">Add</button>
 </form>
-
 </body>
 </html>
