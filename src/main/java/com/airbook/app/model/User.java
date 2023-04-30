@@ -8,7 +8,6 @@ import lombok.NonNull;
 
 @Entity
 @Table(name = "users")
-//@PasswordMatcher
 public class User {
     @Id
     @GeneratedValue
