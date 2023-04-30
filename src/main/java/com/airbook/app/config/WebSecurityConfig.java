@@ -1,8 +1,8 @@
 package com.airbook.app.config;
 
+import com.airbook.app.service.CustomUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import com.airbook.app.service.CustomUserDetailsServiceImpl;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -25,8 +24,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    @Order(1)
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
@@ -41,8 +39,8 @@ public class WebSecurityConfig {
                 .userDetailsService(customUserDetailsServiceImpl)
 
                 .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("username")
+                .loginPage("/login")
+                .usernameParameter("username")
                 .defaultSuccessUrl("/index", true)
                 .failureUrl("/login-error")
                 .and()
@@ -56,7 +54,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
