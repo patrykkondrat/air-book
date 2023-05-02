@@ -1,8 +1,10 @@
 package com.airbook.app.config;
 
 import com.airbook.app.service.CustomUserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,19 +39,18 @@ public class WebSecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .userDetailsService(customUserDetailsServiceImpl)
-
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .defaultSuccessUrl("/index", true)
-                .failureUrl("/login-error")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/index")
-
-                .and()
-                .headers(headers -> headers.frameOptions().sameOrigin())
-                .httpBasic(withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/login?error=Bad username or password")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll())
+                .httpBasic().and()
+                .csrf().disable()
+                .headers().frameOptions().sameOrigin().and()
                 .build();
     }
 

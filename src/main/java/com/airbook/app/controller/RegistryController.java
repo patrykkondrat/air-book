@@ -1,22 +1,31 @@
 package com.airbook.app.controller;
 
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.airbook.app.model.User;
 import com.airbook.app.repo.UserRepo;
+import com.airbook.app.service.RegistryService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class RegistryController {
 
-    private final UserRepo userRepo;
+    private final RegistryService registryService;
+    private PasswordEncoder passwortEncoder;
 
-    public RegistryController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    @Autowired
+    public RegistryController(RegistryService registryService, PasswordEncoder passwortEncoder) {
+        this.registryService = registryService;
+        this.passwortEncoder = passwortEncoder;
     }
 
     @GetMapping("/register")
@@ -31,10 +40,10 @@ public class RegistryController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        user.setRoles("ROLE_USER");
-        userRepo.save(user);
-        model.addAttribute("user", user);
+        user.setPassword(passwortEncoder.encode(user.getPassword()));
+        registryService.registerUser(user);
 
-        return "redirect:/login";
+        System.out.println(user.getPassword());
+    return "redirect:/login";
     }
 }

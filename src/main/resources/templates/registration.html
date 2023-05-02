@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New User</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" th:href="@{/css/index.css}">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+        <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-<div class="col-md-8 mx-auto">
-    <h2>User Registration</h2>
-    <form class="registr" th:action="@{/register}" th:object="${user}" method="post">
-        <input type="text"  class="form-control" th:field="*{username}" placeholder="username">
-        <input type="password" class="form-control" th:field="*{password}" placeholder="password">
-        <button type="submit" class="btn btn-primary btn-block mt-3">Sign In</button>
+<div th:include="index.html"></div>
+<div class="form-group">
+    <form class="login" th:action="@{/register}" th:object="${user}" method="post">
+        <input type="text"  class="form-control" th:field="*{username}" placeholder="Username">
+        <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
+<!--        <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password">-->
+        <button type="submit">Sign In</button>
     </form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
