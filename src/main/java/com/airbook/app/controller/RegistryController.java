@@ -12,10 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegistryController {
@@ -90,5 +87,14 @@ public class RegistryController {
             return "registration";
         }
         return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        /*
+            Login page. Permitted for all.
+        */
+        model.addAttribute("user", "");
+        return "login";
     }
 }
