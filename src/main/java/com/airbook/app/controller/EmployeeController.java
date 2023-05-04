@@ -40,10 +40,8 @@ public class EmployeeController {
             System.out.println("Error " + bindingResult.getAllErrors());
             return "employee/employeeadd";
         }
-
         employee.setBirthday(LocalDate.parse(employee.getBirthday().toString()));
         employee.setDateOfEmployment(LocalDate.parse(employee.getDateOfEmployment().toString()));
-        System.out.println("Employee " + employee);
         employeeService.addEmployee(employee);
         return "redirect:/employee";
     }
@@ -56,7 +54,7 @@ public class EmployeeController {
 
     @GetMapping("/update")
     public String showUpdateEmployee(@RequestParam("id") Long id, Model model) {
-        Employee employee = employeeService.findEmployeeById(id).orElseGet(() -> new Employee());
+        Employee employee = employeeService.findEmployeeById(id).orElseGet(Employee::new);
         model.addAttribute("employee", employee);
         return "employee/employeeupdate";
     }

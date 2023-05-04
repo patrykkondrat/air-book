@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
+    private final EmployeeRepo employeeRepo;
+
     @Autowired
-    private EmployeeRepo employeeRepo;
+    public EmployeeService(EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
+    }
 
     public Optional<Employee> findEmployeeById(Long Id) {
         return employeeRepo.findById(Long.valueOf(Id));
