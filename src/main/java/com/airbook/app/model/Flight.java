@@ -5,8 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -26,20 +27,22 @@ public class Flight {
     @JoinColumn(name = "fk_emp_id")
     private Employee captain;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
-    @JoinColumn(name = "fk_airport_id")
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_airport_start_id")
     private AirPort airportStart;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
-    @JoinColumn(name = "fk_airport_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_airport_end_id", insertable = false, updatable = false)
     private AirPort airportEnd;
+
+    @Enumerated(EnumType.STRING)
     private FlightStatus status;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date departureTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDate departureTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date arrivalTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDate arrivalTime;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = SeatPlacement.class)
     @JoinColumn(name = "fk_seat_id")
