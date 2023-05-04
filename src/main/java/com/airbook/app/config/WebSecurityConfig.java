@@ -30,12 +30,11 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").permitAll()
-                        .requestMatchers("/stuff/**").permitAll()
-                        .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/css/**", "/").permitAll()
-                        .requestMatchers("/css/**", "/register").permitAll()
-                        .requestMatchers("/css/**", "/login").permitAll()
+                        // permit all for static files and login/register
+                        .requestMatchers("/css/**", "/script/**", "/", "/login", "/register").permitAll()
+
+                        .requestMatchers("/employee/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_STUFF")
+                        .requestMatchers("/flight/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 .userDetailsService(customUserDetailsServiceImpl)
