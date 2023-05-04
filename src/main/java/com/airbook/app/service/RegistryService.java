@@ -16,8 +16,11 @@ public class RegistryService {
         this.userRepo = userRepo;
     }
 
-    public void registerUser(User user) {
-        user.setRoles("ROLE_USER");
+    public void registerUser(User user, String role) {
+        user.setRoles(role);
+        if (userRepo.findByUsername(user.getUsername()).isPresent()) {
+            throw new RuntimeException("User " + user.getUsername() + " already exists");
+        }
         userRepo.save(user);
     }
 }
