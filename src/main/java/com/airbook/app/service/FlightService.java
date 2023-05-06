@@ -5,6 +5,7 @@ import com.airbook.app.model.FlightStatus;
 import com.airbook.app.repo.FlightRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,15 +30,34 @@ public class FlightService {
     }
 
     public void delFlightById(Long Id) {
-        flightRepo.deleteById(Id);
+        try {
+            Flight flight = flightRepo.findById(Id).orElseThrow(() -> new IllegalArgumentException("Invalid flight Id:" + Id));
+            // remove relations with other tables
+            flight.setCaptain(null);
+            flight.setAirportStart(null);
+            flight.setAirportEnd(null);
+            flight.setSeatPlacement(null);
+            flightRepo.delete(flight);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void updateFlight(Long Id, Flight flightToUpdate) {
         if (flightRepo.findById(Id).isPresent()) {
-            Flight existingFlight = flightRepo.findById(Id).get();
-
-            existingFlight.setStatus(FlightStatus.CHANGED);
-            flightRepo.saveAndFlush(flightToUpdate);
+            try {
+                Flight existingFlight = flightRepo.findById(Id).get();
+                existingFlight.setAirportStart(flightToUpdate.getAirportStart());
+                existingFlight.setAirportEnd(flightToUpdate.getAirportEnd());
+                existingFlight.setCaptain(flightToUpdate.getCaptain());
+                existingFlight.setDepartureTime(flightToUpdate.getDepartureTime());
+                existingFlight.setArrivalTime(flightToUpdate.getArrivalTime());
+                existingFlight.setSeatPlacement(flightToUpdate.getSeatPlacement());
+                existingFlight.setStatus(FlightStatus.CHANGED);
+                flightRepo.save(existingFlight);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

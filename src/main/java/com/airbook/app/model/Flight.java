@@ -26,13 +26,11 @@ public class Flight {
     @JoinColumn(name = "fk_emp_id")
     private Employee captain;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
-            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = AirPort.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AirPort.class)
     @JoinColumn(name = "fk_airport_start_id")
     private AirPort airportStart;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
-            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = AirPort.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AirPort.class)
     @JoinColumn(name = "fk_airport_end_id")
     private AirPort airportEnd;
 

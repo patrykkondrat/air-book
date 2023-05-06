@@ -57,21 +57,36 @@ public class FlightController {
         flight.setDepartureTime(LocalDateTime.parse(flight.getDepartureTime().toString()));
         flight.setArrivalTime(LocalDateTime.parse(flight.getArrivalTime().toString()));
         flightService.addFlight(flight);
-        return "redirect:/flight/add";
+        return "redirect:/flight";
     }
 
-    @PostMapping("/del/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteFlight(@PathVariable("id") Long id) {
         flightService.delFlightById(id);
-        return "Flight deleted successfully";
+        return "redirect:/flight";
     }
 
-    //update method
-    @PutMapping("/update/{id}")
-    public String updateFlight(@PathVariable("id") Long id, Flight flight) {
-        flightService.updateFlight(id, flight);
-        return "Update successful";
+    @GetMapping("/update")
+    public String updateFlight(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("flight", flightService.findFlightById(id).orElseGet(Flight::new));
+        model.addAttribute("employees", employeeService.findAllEmployees());
+        model.addAttribute("airportsStart", airPortService.findAllAirPorts());
+        model.addAttribute("airportsEnd", airPortService.findAllAirPorts());
+        model.addAttribute("seatPlacement", List.of(1, 2));
+        return "flight/flightupdate";
     }
+
+    @PostMapping("/update/{id}")
+    public String updateFlight(@PathVariable("id") Long id, @ModelAttribute("flight") Flight flight, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/flight/update/" + id;
+        }
+        flight.setDepartureTime(LocalDateTime.parse(flight.getDepartureTime().toString()));
+        flight.setArrivalTime(LocalDateTime.parse(flight.getArrivalTime().toString()));
+        flightService.updateFlight(id, flight);
+        return "redirect:/flight";
+    }
+
 
     @GetMapping("/{id}")
     public Optional<Flight> getFlightById(Long Id) {
