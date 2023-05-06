@@ -1,13 +1,11 @@
 package com.airbook.app.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -23,28 +21,32 @@ public class Flight {
     @Column(name = "max_seats")
     private Integer maxSeats;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Employee.class)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
+            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = Employee.class)
     @JoinColumn(name = "fk_emp_id")
     private Employee captain;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
+            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = AirPort.class)
     @JoinColumn(name = "fk_airport_start_id")
     private AirPort airportStart;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = AirPort.class)
-    @JoinColumn(name = "fk_airport_end_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
+            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = AirPort.class)
+    @JoinColumn(name = "fk_airport_end_id")
     private AirPort airportEnd;
 
     @Enumerated(EnumType.STRING)
     private FlightStatus status;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDate departureTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime departureTime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDate arrivalTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime arrivalTime;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = SeatPlacement.class)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE,
+            CascadeType.REFRESH, CascadeType.DETACH}, targetEntity = SeatPlacement.class)
     @JoinColumn(name = "fk_seat_id")
     private SeatPlacement seatPlacement;
 }
