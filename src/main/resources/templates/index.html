@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Welcome</title>
 <!--    <link th:href="@{https://fonts.googleapis.com/css?family=Asap}" rel="stylesheet">-->
-<!--    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css"/>-->
+    <link rel="stylesheet" href="/css/index.css" type="text/css"/>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,6 +13,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" th:href="@{/}">AirBook</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +28,7 @@
                 <a class="nav-link" th:href="@{/employee}">Employee</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Flight</a>
+                <a class="nav-link" th:href="@{/flight}">Flight</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Booking</a>
@@ -35,19 +36,39 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/login}">Log in</a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/register}">Sign in</a>
             </li>
         </ul>
     </div>
 </nav>
+</div>
+<div class="waves container">
+    <div class="search">
+        <p th:if="${param.error}">Error</p>
+        <form th:action="@{/search}" th:object="${flightSearchRequest}" method="post">
+            <div class="form-group">
+                <label for="airportStart">Start Airport:</label>
+                <select class="custom-select" id="airportStart" th:field="*{airportStartId}">
+                    <option th:each="airportstart : ${airportsStart}" th:value="${airportstart.airportId}" th:text="${airportstart.getAirportName()}"/>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="airportEnd">End Airport:</label>
+                <select class="custom-select" id="airportEnd" th:field="*{airportEndId}">
+                    <option th:each="airportend : ${airportsEnd}" th:value="${airportend.airportId}" th:text="${airportend.getAirportName()}"/>
+                </select>
+            </div>
 
-
-
-<!--<div class="nav-bar-cell1-rev">-->
-<!--    <a th:href="@{/login}">Log In</a><br>-->
-<!--    <a th:href="@{/registration}">Go to User Registration Form</a><br>-->
-<!--    <a th:href="@{/employee_reg}">Go to Employee Registration Form</a><br>-->
-<!--</div>-->
+            <label for="departure">
+                <input class="form-control" id="departure" type="date" th:field="*{departureTime}" placeholder="Departure">
+            </label>
+            <label for="return">
+                <input class="form-control" id="return" type="date" th:field="*{returnTime}" placeholder="Return">
+            </label>
+            <input class="btn btn-primary" type="submit" value="Search">
+        </form>
+    </div>
+</div>
 </body>
 </html>
