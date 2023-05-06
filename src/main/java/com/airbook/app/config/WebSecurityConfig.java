@@ -33,15 +33,16 @@ public class WebSecurityConfig {
                         // permit all for static files and login/register
                         .requestMatchers("/css/**", "/script/**", "/", "/login", "/register").permitAll()
 
-                        .requestMatchers("/employee/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_STUFF")
-                        .requestMatchers("/flight/**").permitAll()
+                        .requestMatchers("/employee/**", "/flight").hasAnyAuthority("ROLE_ADMIN", "ROLE_STUFF")
+                        .requestMatchers("/flight/**").hasAnyAuthority("ROLE_ADMIN")
+
                         .anyRequest().permitAll()
                 )
                 .userDetailsService(customUserDetailsServiceImpl)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
-                        .failureUrl("/login?error=Bad username or password")
+                        .failureUrl("/login?error=true")
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout")

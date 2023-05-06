@@ -53,6 +53,7 @@ public class FlightService {
                 existingFlight.setDepartureTime(flightToUpdate.getDepartureTime());
                 existingFlight.setArrivalTime(flightToUpdate.getArrivalTime());
                 existingFlight.setSeatPlacement(flightToUpdate.getSeatPlacement());
+                existingFlight.setMaxSeats(flightToUpdate.getMaxSeats());
                 existingFlight.setStatus(FlightStatus.CHANGED);
                 flightRepo.save(existingFlight);
             } catch (Exception e) {
