@@ -4,11 +4,13 @@
     <link rel="stylesheet" type="text/css" href="../static/css/login.css"/>
     <meta charset="UTF-8">
     <title>AirBook</title>
-
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <body>
-<div th:insert="index.html"></div>
 <div class="form-group">
     <form class="login" th:action="@{/login}" th:object="${user}" method="post">
         <p th:if="${param.error}" th:text="${param.error.get(0)}"></p>
@@ -21,7 +23,7 @@
             <input type="password" name="password"  class="form-control" id="password" required placeholder="Password">
         </div>
         <button type="submit">Login</button>
-        <br><span>Nie masz konta?<a th:href="@{/register}">Zarejestruj się.</a></span>
+        <br><span class="register-link">Nie masz konta? <a th:href="@{/register}">Zarejestruj się.</a></span>
     </form>
 </div>
 </body>
