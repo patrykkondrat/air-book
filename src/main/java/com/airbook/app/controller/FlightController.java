@@ -1,8 +1,8 @@
 package com.airbook.app.controller;
 
-import com.airbook.app.model.Employee;
+import com.airbook.app.dto.AirportDto;
+import com.airbook.app.model.AirPort;
 import com.airbook.app.model.Flight;
-import com.airbook.app.repo.AirPortRepo;
 import com.airbook.app.service.AirPortService;
 import com.airbook.app.service.EmployeeService;
 import com.airbook.app.service.FlightService;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/flight")
@@ -92,4 +93,10 @@ public class FlightController {
     public Optional<Flight> getFlightById(Long Id) {
         return flightService.findFlightById(Id);
     }
+
+    @GetMapping("/airports")
+    public List<AirportDto> getAllAirports() {
+        return airPortService.findAllAirPorts().stream().map(airPortService::mapAirportToDto).collect(Collectors.toList());
+    }
+
 }
