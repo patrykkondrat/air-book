@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Flight</title>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/flight.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/waves.css}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/script/flight.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="waves container">
+    <div class="card flight-container" th:each="flight : ${flights}">
+        <div class="card-header flight-info" data-toggle="collapse">
+            <div class="row gx-3 justify-content-center">
+                <div class="col-md-6">
+                    <span>Z:</span>
+                </div>
+                <div class="col-md-6">
+                    <span>Do:</span>
+                </div>
+            </div>
+            <div class="row gx-3 justify-content-center">
+                <div class="col-md-6">
+                    <span th:text="${flight.getAirportStart().getAirportName()}"></span>
+                </div>
+                <div class="col-md-6">
+                    <span th:text="${flight.getAirportEnd().getAirportName()}"></span>
+                </div>
+            </div>
+            <div class="row gx-3 justify-content-center">
+                <div class="col-md-6">
+                    <span th:text="${flight.getArrivalTime()}"></span>
+                </div>
+                <div class="col-md-6">
+                    <span th:text="${flight.getDepartureTime()}"></span>
+                </div>
+            </div>
+            <a class="near-row btn" th:href="${'/flight/update?id=' + flight.getFlightId()}">Edit</a>
+            <a class="near-row btn" th:href="${'/flight/delete/' + flight.getFlightId()}">Delete</a>
+        </div>
+        <div class="collapse">
+            <div class="card-body">
+                <span>Captain:</span>
+                <span th:text="${flight.getCaptain().getName()}"></span><br>
+                <span>Status:</span>
+                <span th:text="${flight.getStatus()}"></span><br>
+                <span>Max seats:</span>
+                <span th:text="${flight.getMaxSeats()}"></span><br>
+                <span>Flight number:</span>
+                <span th:text="${flight.getFlightId()}"></span><br>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary add" th:href="@{/flight/add}">Add</a>
+</div>
+</body>
+</html>
