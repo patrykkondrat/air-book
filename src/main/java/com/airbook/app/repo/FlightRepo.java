@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface FlightRepo extends JpaRepository<Flight, Long> {
-    List<Flight> findAllByAirportStartAndAirportEndAndDepartureTime(AirPort airportStart, AirPort airportEnd, LocalDateTime departureTime);
+    List<Flight> findAllByAirportStartAndAirportEnd(AirPort airportStart, AirPort airportEnd);
 }

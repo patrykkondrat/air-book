@@ -6,6 +6,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class FlightDto {
     private AirportDto airportStart;
     private AirportDto airportEnd;
