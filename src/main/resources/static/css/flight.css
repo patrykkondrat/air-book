@@ -1,0 +1,12 @@
+.flight-details {
+    display: none;
+}
+
+.flight-info{
+    width: 600px;
+}
+.container {
+    top: 50%;
+    left: 50%;
+    width: 70%;
+}

@@ -47,6 +47,7 @@ body {
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;
+    width: 80px;
 }
 
 .employee::before, .employee::after {
