@@ -48,24 +48,25 @@
         <p th:if="${param.error}">Error</p>
         <form th:action="@{/search}" th:object="${flightSearchRequest}" method="post">
             <div class="form-group">
-                <label for="airportStart">Start Airport:</label>
-                <select class="custom-select" id="airportStart" th:field="*{airportStartId}">
+                <label for="airportStart">Start Airport</label>
+                <select class="custom-select" id="airportStart" th:field="*{airportStartId}" required>
                     <option th:each="airportstart : ${airportsStart}" th:value="${airportstart.airportId}" th:text="${airportstart.getAirportName()}"/>
                 </select>
             </div>
             <div class="form-group">
-                <label for="airportEnd">End Airport:</label>
-                <select class="custom-select" id="airportEnd" th:field="*{airportEndId}">
+                <label for="airportEnd">End Airport</label>
+                <select class="custom-select" id="airportEnd" th:field="*{airportEndId}" required>
                     <option th:each="airportend : ${airportsEnd}" th:value="${airportend.airportId}" th:text="${airportend.getAirportName()}"/>
                 </select>
             </div>
-
-            <label for="departure">
-                <input class="form-control" id="departure" type="date" th:field="*{departureTime}" placeholder="Departure">
-            </label>
-            <label for="return">
-                <input class="form-control" id="return" type="date" th:field="*{returnTime}" placeholder="Return">
-            </label>
+            <div class="form-group">
+                <label for="departure">Departure</label>
+                <input class="form-control" id="departure" type="date" th:field="*{departureTime}" placeholder="Departure" required>
+            </div>
+            <div class="form-group">
+                <label for="return">Return</label>
+                <input class="form-control" id="return" type="date" th:field="*{returnTime}" placeholder="Return" required>
+            </div>
             <input class="btn btn-primary" type="submit" value="Search">
         </form>
     </div>

@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" href="/css/index.css">
 </head>
 <body>
-<h2>UDAŁO SIĘ!!</h2>
+<div class="result-container">
+    <div class="flight-result">
+        <div class="div1">Status</div>
+        <div class="div2">From:</div>
+        <div class="div3" th:text="${searchResultList.getFlightTarget().getAirportStart().getAirportName()}"></div>
+        <div class="div4" th:text="${searchResultList.getFlightTarget().getDepartureTime()}"></div>
+        <div class="div5">To:</div>
+        <div class="div6" th:text="${searchResultList.getFlightTarget().getAirportEnd().getAirportName()}"></div>
+        <div class="div7" th:text="${searchResultList.getFlightTarget().getArrivalTime()}"></div>
+        <div class="div8">Some css line</div>
+    </div>
+    <div class="flight-result">
+        <div class="div1">Status</div>
+        <div class="div2">From:</div>
+        <div class="div3" th:text="${searchResultList.getFlightReturn().getAirportStart().getAirportName()}"></div>
+        <div class="div4" th:text="${searchResultList.getFlightReturn().getDepartureTime()}"></div>
+        <div class="div5">To:</div>
+        <div class="div6" th:text="${searchResultList.getFlightReturn().getAirportEnd().getAirportName()}"></div>
+        <div class="div7" th:text="${searchResultList.getFlightReturn().getArrivalTime()}"></div>
+        <div class="div8">Some css line</div>
+    </div>
+</div>
 </body>
 </html>

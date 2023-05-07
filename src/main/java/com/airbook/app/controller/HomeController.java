@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -36,13 +37,13 @@ public class HomeController {
     }
 
     @PostMapping("/search")
-    public String searchFlight(@ModelAttribute("flightSearchRequest") FlightSearchRequest searchRequest, BindingResult result) {
+    public ModelAndView searchFlight(@ModelAttribute("flightSearchRequest") FlightSearchRequest searchRequest, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
         if (result.hasErrors()) {
-            return "redirect:/?error=true";
+            modelAndView.setViewName("redirect:/?error=true");
         }
-        searchRequest.setDepartureTime(LocalDate.parse(searchRequest.getDepartureTime().toString()));
-        searchRequest.setReturnTime(LocalDate.parse(searchRequest.getReturnTime().toString()));
-        flightSearch.search(searchRequest);
-        return "searchresult";
+        modelAndView.addObject("searchResultList", flightSearch.search(searchRequest));
+        modelAndView.setViewName("searchresult");
+        return modelAndView;
     }
 }
