@@ -18,7 +18,7 @@
         <div class="div7" th:text="${searchResultList.getFlightTarget().getArrivalTime()}"></div>
         <div class="div8">Some css line</div>
     </div>
-    <div class="flight-result">
+    <div class="flight-result" th:if="${searchResultList?.flightReturn != null}">
         <div class="div1">Status</div>
         <div class="div2">From:</div>
         <div class="div3" th:text="${searchResultList.getFlightReturn().getAirportStart().getAirportName()}"></div>
