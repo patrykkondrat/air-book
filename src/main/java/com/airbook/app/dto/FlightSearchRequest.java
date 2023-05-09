@@ -1,9 +1,6 @@
 package com.airbook.app.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -16,5 +13,6 @@ public class FlightSearchRequest {
     private String airportEndId;
     private LocalDate departureTime;
     private LocalDate returnTime;
-//    private Integer numberOfPassengers;
+    private Integer numberOfPassengers;
+    private Boolean isOneWay;
 }
