@@ -31,16 +31,14 @@ public class FlightSearch {
         AirPort airportEnd = airPortService.findById(searchRequest.getAirportEndId());
 
         List<FlightDto> flightsTarget = findDirectRouteByAirportsAndDate(airportStart, airportEnd, searchRequest.getDepartureTime());
-        List<FlightDto> flightsReturn = findDirectRouteByAirportsAndDate(airportEnd, airportStart, searchRequest.getReturnTime());
+        FlightSearchResponse response = new FlightSearchResponse();
+        response.setFlightTarget(flightsTarget.get(0));
 
-        if (flightsTarget.size() > 0 && flightsReturn.size() > 0) {
-            FlightSearchResponse response = new FlightSearchResponse();
-            response.setFlightTarget(flightsTarget.get(0));
+        if (!searchRequest.getIsOneWay()) {
+            List<FlightDto> flightsReturn = findDirectRouteByAirportsAndDate(airportEnd, airportStart, searchRequest.getReturnTime());
             response.setFlightReturn(flightsReturn.get(0));
-            return response;
         }
-
-        return null;
+        return response;
     }
 
     public List<FlightDto> findDirectRouteByAirportsAndDate(AirPort airportStart, AirPort airportEnd, LocalDate date) {

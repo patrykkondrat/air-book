@@ -60,7 +60,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateEmployee(@PathVariable("id") Long id, Employee employee, Model model, BindingResult bindingResult) {
+    public String updateEmployee(@PathVariable("id") Long id, Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println("Error " + bindingResult.getAllErrors());
             return "redirect:/update/{id}";
